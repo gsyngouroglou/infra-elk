@@ -1,0 +1,29 @@
+server.name: "localhost"
+server.host: "0.0.0.0"
+
+elasticsearch:
+  hosts:
+    - "https://elasticsearch1:9200"
+  username: kibana_system
+  password: asdfasdfasdfasdfasdfasdf1
+  ssl:
+    certificateAuthorities: [ "config/certs/ca/ca.pem" ]
+
+
+# To prevent sessions from being invalidated on restart
+xpack.encryptedSavedObjects.encryptionKey: 'UEs2S28DisjIMEZglnjMUEs2S28DisjI'
+xpack.reporting.encryptionKey: 'UEs2S28DisjIMEZglnjMUEs2S28DisjI'
+xpack.security.encryptionKey: 'UEs2S28DisjIMEZglnjMUEs2S28DisjI'
+#xpack.security.session.idleTimeout: "1h"
+#xpack.security.session.lifespan: "30d"
+
+
+# Reporting is not able to use this as the Kibana server hostname. To enable PNG/PDF Reporting to work:
+xpack.reporting.roles.enabled: false
+xpack.reporting.kibanaServer.hostname: localhost
+
+
+#server.shutdownTimeout: "5s"
+#monitoring.ui.container.elasticsearch.enabled: true
+#elasticsearch.username: "kibana_system"
+#elasticsearch.password: "kibana"

@@ -1,0 +1,46 @@
+cluster.name: "docker-cluster-test"
+network.host: 0.0.0.0
+network.bind_host: 0.0.0.0
+discovery.type: single-node
+
+# Enable security features
+xpack.license.self_generated.type: basic
+xpack.security.enabled: true
+xpack.security.enrollment.enabled: true
+
+# Enable encryption for HTTP API client connections, such as Kibana, Logstash, and Agents
+xpack.security.http.ssl.enabled: true
+xpack.security.http.ssl.key: certs/elasticsearch1/elasticsearch1.key
+xpack.security.http.ssl.certificate: certs/elasticsearch1/elasticsearch1.crt
+xpack.security.http.ssl.certificate_authorities: certs/ca/ca.crt
+xpack.security.http.ssl.verification_mode: certificate
+
+# Enable encryption and mutual authentication between cluster nodes (no other nodes exist)
+xpack.security.transport.ssl.enabled: true
+xpack.security.transport.ssl.key: certs/elasticsearch1/elasticsearch1.key
+xpack.security.transport.ssl.certificate: certs/elasticsearch1/elasticsearch1.crt
+xpack.security.transport.ssl.certificate_authorities: [ "certs/ca/ca.crt" ]
+xpack.security.transport.ssl.verification_mode: certificate
+
+# Allow HTTP API connections from anywhere
+# Connections are encrypted and require user authentication
+http.host: 0.0.0.0
+
+# Allow other nodes to join the cluster from anywhere
+# Connections are encrypted and mutually authenticated
+transport.host: 0.0.0.0
+
+# Fix exception during geoip databases update
+ingest.geoip.downloader.enabled: false
+  
+# Fix error: vm.max_map_count [65530] is too low, increase to at least [262144
+vm.max_map_count: 262144
+
+# Requesting the JVM to lock the heap in memory (and not in swap) through mlockall (Unix) or virtual lock (Windows)
+bootstrap.memory_lock: true
+
+#bootstrap.memory_lock: true
+#vm.max_map_count=262144:
+
+#xpack.graph.enabled: false
+#xpack.watcher.enabled: false
